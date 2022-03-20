@@ -14,10 +14,10 @@ age = int(input('Сколько вам лет? '))
 weight = int(input('Сколько вы весите? '))
 
 if age < 30 and weight > 50 and weight < 120:
-    print(name, age, 'год, вес', weight, '- хорошее состояние')
+    print(name, age, 'год, вес', weight, ' - хорошее состояние')
 elif age > 30 and age < 40 and (weight < 50 or weight > 120):
-    print(name, age, 'год, вес', weight, '- следует заняться собой')
+    print(name, age, 'год, вес', weight, ' - следует заняться собой')
 elif age > 40 and (weight < 50 or weight > 120):
-    print(name, age, 'год, вес', weight, '- следует обратится к врачу')
+    print(name, age, 'год, вес', weight, ' - следует обратится к врачу')
 else:
-    print(name, age, 'год, вес', weight, '- жить будете')
+    print(name, age, 'год, вес', weight, ' - жить будете')
