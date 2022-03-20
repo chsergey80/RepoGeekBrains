@@ -8,9 +8,8 @@
 
 while True:
     number = int(input())
-    if number > 0 and number < 10:
-        print(number**2)
-        break
-    else:
+    if number < 0 or number > 10:
         print('Введенное число находится вне рекомендованного диапазона, введите число повторно')
-        continue
+    else:
+        print(number ** 2)
+        break
