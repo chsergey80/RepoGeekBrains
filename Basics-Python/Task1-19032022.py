@@ -4,4 +4,4 @@
 #Решение задания 2.1
 #data = int(input())
 
-print(int(input()) + 2)
+print(int(input('Введите число ')) + 2)
