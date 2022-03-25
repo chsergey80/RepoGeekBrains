@@ -20,24 +20,17 @@
 Примечание: Знаки “=”, “>” и “<” пользователь вводит с клавиатуры для общения с компьютером.
 Вы можете использовать этот способ или придумать свой.
 """
-
 import random
-user_number = int(input('Загадайте число от 1 до 100: '))
-count = int(input('Сколько попыток вы хотите дать компьютеру? '))
-a = 1
-z = 100
-i = 0
-while i < count:
-    i += 1
-    if i > count:
-        print('Компьютер потратил все попытки и не смог отгадать число ')
-        break
-    comp_number = random.randint(a, z)
-    print(comp_number)
-    if user_number == comp_number:
-        print("Компьютер смог отгадать число! - " + str(comp_number))
-        break
-    if user_number > comp_number:
-        a = comp_number
-    if user_number < comp_number:
-        z = comp_number
+
+min_number = int(input('Введите минимально допустимое число в выборке'))
+max_number = int(input('Введите максимально допустимое число в выборке'))
+zapros = None
+while zapros != '=':
+    number = random.randint(min_number, max_number)
+    print(number)
+    zapros = input(' => (загаданное число больше вышего)  <')
+    if zapros == '>':
+        min_number = number + 1
+    elif zapros == '<':
+        max_number = number - 1
+print('Выигрыш')
