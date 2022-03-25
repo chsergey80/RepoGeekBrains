@@ -10,6 +10,6 @@ my_list_1 = [2, 2, 5, 12, 8, 2, 12]
 my_list_1 = [2, 2, 5, 12, 8, 2, 12]
 result = []
 for number in my_list_1:
-    if my_list_1.count(number) == 1:
+    if my_list_1.count(number) == 1:  # Сколько раз число входит в список
         result.append(number)
 print(result)
