@@ -1,13 +1,13 @@
 import random
-number = random.randint(1, 100)
+number = random.randint(1, 100)  # Возвращает случайное целое число в заданом диапазоне
 print(number)
 user_number = None
 count = 0
-levels = {1: 10, 2: 5, 3: 3}
+levels = {1: 10, 2: 5, 3: 3}     # Создаем справочник с данными об уровнях сложности
 level = int(input('Введите уровень сложности: '))
-max_count = levels[level]
+max_count = levels[level]        # Вызываем из словаря данные по характеристикам уровня
 user_count = int(input('Введите количество пользователей: '))
-users = []
+users = []                       # Создаем список с именами участников игры
 for i in range(user_count):
     user_name = input(f'Введите имя пользователя {i}')
     users.append(user_name)

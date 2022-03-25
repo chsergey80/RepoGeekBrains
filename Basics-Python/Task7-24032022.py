@@ -22,7 +22,6 @@
 """
 
 import random
-
 user_number = int(input('Загадайте число от 1 до 100: '))
 count = int(input('Сколько попыток вы хотите дать компьютеру? '))
 a = 1
@@ -33,12 +32,12 @@ while i < count:
     if i > count:
         print('Компьютер потратил все попытки и не смог отгадать число ')
         break
-comp_number = random.randint(a, z)
-print(comp_number)
-if user_number == comp_number:
-print("Компьютер смог отгадать число! - " + str(comp_number))
-break
-if user_number > comp_number:
-a = comp_number
-if user_number < comp_number:
-z = comp_number
+    comp_number = random.randint(a, z)
+    print(comp_number)
+    if user_number == comp_number:
+        print("Компьютер смог отгадать число! - " + str(comp_number))
+        break
+    if user_number > comp_number:
+        a = comp_number
+    if user_number < comp_number:
+        z = comp_number
