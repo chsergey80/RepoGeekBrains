@@ -1,21 +1,15 @@
-"""def my_filter(numbers, function):
-    result = []
-    for number in numbers:
-        if function(number):
-            result.append(number)
-    return result
-numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+def sum_digits(value):
+    res = 0
+    while value != 0:
+        res += value % 10
+        value //= 10
+    return res
 
-def is_even(number):
-    return number % 2 == 0
-print(my_filter(numbers, is_even))
 
-def is_not_even(number):
-    return number % 2 != 0
-print(my_filter(numbers, is_not_even))
-"""
+arr = [i ** 3 for i in range(1, 1001, 2)]
 
-numbers = [5, 3, 4, 7, 8]
-print(list(map(lambda x: x**2, numbers)))
+res1 = sum(filter(lambda num: sum_digits(num) % 7 == 0, arr))
+res2 = sum(filter(lambda num: sum_digits(num + 17) % 7 == 0, arr))
 
-print(list(map(lambda x: str(x), numbers)))
+print(res1)
+print(res2)
