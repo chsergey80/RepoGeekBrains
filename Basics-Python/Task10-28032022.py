@@ -10,12 +10,15 @@
     Функция должна сама работать со словарями и изменять их значения.
 """
 
+
 def attack(person1, person2):
     new_health = person2['health'] - person1['damage']
     person2['health'] = new_health
-    print(f"Игрок {person1['name']} нанёс {person1['damage']} урона; у игрока {person2['name']} осталось {new_health} жизней.")
+    print(
+        f"Игрок {person1['name']} нанёс {person1['damage']} урона; у игрока {person2['name']} осталось {new_health} жизней.")
     return person2['health']
 
-player = {'name':input('Введите имя игрока:'),'health':1000,'damage':60}
-enemy = {'name':input('Введите имя игрока:'),'health':1000,'damage':80}
-attack(player,enemy)
+
+player = {'name': input('Введите имя игрока:'), 'health': 1000, 'damage': 60}
+enemy = {'name': input('Введите имя игрока:'), 'health': 1000, 'damage': 80}
+attack(player, enemy)
