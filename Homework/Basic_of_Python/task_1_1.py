@@ -17,11 +17,11 @@ duration = 400153
 для нескольких значений продолжительности, будет ли тут полезен список?
 """
 
-interval = int(input("Введите интервал в секундах: "))
-day = (interval // (24 * 60 * 60))
-hour = (interval // (60 * 60) - 24 * day)
-minutes = (interval // 60 % 60)
-seсonds = interval % 60
+duration = int(input("Введите интервал в секундах: "))
+day = (duration // (24 * 60 * 60))
+hour = (duration // (60 * 60) - 24 * day)
+minutes = (duration // 60 % 60)
+seсonds = duration % 60
 print("Ответ:")
 if day > 0:
     print(day, "дн", hour, "час", minutes, "мин", seсonds, "сек")
