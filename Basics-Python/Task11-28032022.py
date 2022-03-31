@@ -20,10 +20,4 @@ def attack(person1, person2):
     print(f"Игрок {person1['name']} нанёс {person1['damage']} урона; у игрока {person2['name']} осталось {new_health} жизней; "
     f"игрок {person1['name']} получил {return_damage(player,enemy)} урона в обратку.")
     return person2['health']
-dcsdcsdcsdcsd
-ssdf
-sdfsd
-sdf
-sdfs
-df
 attack(player,enemy)

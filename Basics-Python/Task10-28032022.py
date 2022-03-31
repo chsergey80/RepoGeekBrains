@@ -10,7 +10,6 @@
     Функция должна сама работать со словарями и изменять их значения.
 """
 
-
 def attack(person1, person2):
     new_health = person2['health'] - person1['damage']
     person2['health'] = new_health
