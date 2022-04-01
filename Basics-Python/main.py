@@ -1,3 +1,6 @@
-from folderb.modb import foo
+import sys, os
+name = sys.platform
 
-print(foo, bar)
+for i in range(1, 6):
+    new_path = os.path.join(os.getcwd(), '{}_{}'.format(name, i))
+    os.mkdir(new_path)
