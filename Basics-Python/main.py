@@ -1,6 +1,24 @@
 import sys, os
-name = sys.platform
 
-for i in range(1, 6):
-    new_path = os.path.join(os.getcwd(), '{}_{}'.format(name, i))
-    os.mkdir(new_path)
+
+def ping():
+    print('pong')
+
+
+def hello(name):
+    print('Hello', name)
+
+
+def get_info():
+    print(os.listdir())
+
+
+command = sys.argv[1]
+
+if command == 'ping':
+    ping()
+elif command == 'list':
+    get_info()
+elif command == 'name':
+    name = sys.argv[2]
+    hello(name)
