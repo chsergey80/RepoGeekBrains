@@ -1,4 +1,5 @@
-from decimal import Decimal
-D = Decimal
-D("0.444").quantize(D("1.0000"))
-print(D)
+from requests import get, utils
+response = get('http://geekbrains.ru')
+encodings = utils.get_encoding_from_headers(response.headers)
+content = response.content.decode(encoding=encodings)
+print(content)
