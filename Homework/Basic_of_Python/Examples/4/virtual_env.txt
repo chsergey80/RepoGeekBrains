@@ -1,0 +1,20 @@
+Virtualenv. Особенности использования
+Под виртуальной средой понимают директорию, содержащую необходимые для работы приложения пакеты.
+С их помощью выполняется изолированный запуск приложения.
+
+Terminal должен быть Command Prompt, а не Local
+
+Установка virtualenv:           pip install virtualenv
+                                pip3 install virtualenv (Linux, Mac)
+
+Создание виртуальной среды:     virtualenv my_proj
+
+Активация виртуальной среды:    "my_proj\Scripts\activate" - Windows
+                                source my_proj/venv/bin/activate - Linux, MacOS
+
+Деактивация виртуальной среды:  my_proj\Scripts\deactivate - Windows
+                                deactivate - Linux, MacOS
+
+Сохранить версии пакетов в файл:  pip freeze > requirements.txt
+
+Установить версии из файла:  pip install -r requirements.txt

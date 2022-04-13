@@ -1,33 +1,31 @@
-from random import choice
+from datetime import datetime
+
+import requests
 
 
-def gen(from_, used_):  # функция считает шутки
-    while True:
-        n_nouns = choice(from_)
-        if not (n_nouns in used_):
-            used_.append(n_nouns)
-            break
+def currency_rates(currency_code="", url="http://www.cbr.ru/scripts/XML_daily.asp"):
+    if not (currency_code and url):
+        return None
+    currency_code = currency_code.upper()
+    respond = requests.get(url)
+    if respond.ok:
+        cur = respond.text.split(currency_code)
+        if len(cur) == 1:
+            return None
+        value = cur[1].split("</Value>")[0].split("<Value>")[1]
+        # conver to float
+        value = float(value.replace(",", "."))
+        # conver to decimal
+        # decimal.getcontext().prec = 4
+        # value = decimal.Decimal(value.replace(",", "."))
+        # parse date from respond
+        date = respond.headers["Date"]
+        date = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S GMT").date()
+        return (value, date)
 
-    return (n_nouns, used_)
+    else:
+        return None
 
 
-def get_jokes(count):
-    used = []
-    answer = []
-    for _ in range(count):
-        nons, used_ = gen(nouns, used)
-        used.append(used_)
-        adv, used_ = gen(adverbs, used)
-        used.append(used_)
-        adj, used_ = gen(adjectives, used)
-        used.append(used_)
-        answer.append(f"{nons} {adv} {adj}")
-
-    return answer
-
-
-nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
-adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
-adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
-
-print(get_jokes(3))
+print((currency_rates("Usd")))
+print((currency_rates("eUR")))
