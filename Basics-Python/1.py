@@ -1,4 +1,3 @@
-from numpy import pi, sin, cos
+from sys import argv
 
-print(pi)
-print(sin(6))
+print(argv)
