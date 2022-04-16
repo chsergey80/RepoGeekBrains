@@ -9,7 +9,7 @@ import sys
 import utils
 
 code = 'GBP'
-args = sys.argv[1:]
+args = sys.argv
 for code in args:
     conv = utils.currency_rates(code)
     if conv:
