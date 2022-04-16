@@ -1,5 +1,7 @@
 from requests import get, utils
+from time import perf_counter
 
+nums = {}
 
 response = get('http://geekbrains.ru')
 encodings = utils.get_encoding_from_headers(response.headers)
@@ -13,3 +15,5 @@ print(encodings)
 #content = response.text
 #for el in content.split('href="')[1:]:
 #    print(el.split('"')[0])
+
+print(type(nums))
