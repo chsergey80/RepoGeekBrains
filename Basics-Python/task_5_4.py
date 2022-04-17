@@ -23,4 +23,4 @@ if __name__ == "__main__":
     answ = my_filter(*src)
     print(time.perf_counter() - t)
     print(sys.getsizeof(answ))
-    print(list(answ) == result)
+    print(list(answ) == result)  # we don't know assert for test
