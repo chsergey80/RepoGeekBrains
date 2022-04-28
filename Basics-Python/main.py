@@ -1,31 +1,47 @@
-from datetime import datetime
+# 3. Создайте собственный класс-исключение,
+# который должен проверять содержимое списка на наличие только чисел.
+# Проверить работу исключения на реальном примере.
+# Запрашивать у пользователя данные и заполнять список необходимо только числами.
+# Класс-исключение должен контролировать типы данных элементов списка.
+# Примечание: длина списка не фиксирована.
+# Элементы запрашиваются бесконечно,
+# пока пользователь сам не остановит работу скрипта, введя, например, команду «stop».
+# При этом скрипт завершается, сформированный список с числами выводится на экран.
+# Подсказка: для этого задания примем, что пользователь может вводить только числа и строки.
+# Во время ввода пользователем очередного элемента необходимо реализовать проверку типа элемента.
+# Вносить его в список, только если введено число.
+# Класс-исключение должен не позволить пользователю ввести текст (не число) и отобразить соответствующее сообщение.
+# При этом работа скрипта не должна завершаться.
 
-import requests
+class Mistake:
+    def __init__(self, txt):
+        self.txt = txt
+
+#i = '22'
+#print(i)
+#m = int(i)
+#print(m)
+#print(type(m))
+"""
+lst_1 = ['1', '2', '3']
+lst_2 = []
+for el in lst_1:
+    el = int(el)
+    lst_2.append(el)
+print(lst_1)
+print(lst_2)
+"""
+class NotNumber(ValueError):
+    pass
 
 
-def currency_rates(currency_code="", url="http://www.cbr.ru/scripts/XML_daily.asp"):
-    if not (currency_code and url):
-        return None
-    currency_code = currency_code.upper()
-    respond = requests.get(url)
-    if respond.ok:
-        cur = respond.text.split(currency_code)
-        if len(cur) == 1:
-            return None
-        value = cur[1].split("</Value>")[0].split("<Value>")[1]
-        # conver to float
-        value = float(value.replace(",", "."))
-        # conver to decimal
-        # decimal.getcontext().prec = 4
-        # value = decimal.Decimal(value.replace(",", "."))
-        # parse date from respond
-        date = respond.headers["Date"]
-        date = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S GMT").date()
-        return (value, date)
-
-    else:
-        return None
-
-
-print((currency_rates("Usd")))
-print((currency_rates("eUR")))
+my_list = []
+while True:
+    value = input('Введите число в список (пропуск ввода - выход):')
+    if value == '':
+        break
+    if not value.isdigit():
+        print('Не число!')
+        continue
+    my_list.append(int(value))
+    print(my_list)
