@@ -58,16 +58,84 @@
 # print(all_files == all_files_2)
 
 # Пример 5.
+# import os
+#
+# root = r'C:\Users\User\AppData\Local\Programs\Python\Python310\Lib\site-packages\django'
+# folder = r'C:\Users\User\AppData\Local\Programs\Python\Python310\Lib\site-packages\django\contrib\admin'
+# django_admin_dirs = [os.path.relpath(item, root) for item in os.scandir(folder)
+#         if item.is_dir() and not item.name.startswith('_')]
+# print(django_admin_dirs)
+
+# Пример 6.
+# import os
+#
+# root = r'C:\Users\User\AppData\Local\Programs\Python\Python310\Lib\site-packages\django'
+# curr_file = r'C:\Users\User\AppData\Local\Programs\Python\Python310\Lib\site-packages\django\http\request.py'
+# print('exists', os.path.exists(curr_file))
+# f_dir, f_name = os.path.split(curr_file)   # делит путь к файлу на путь к папке и имя файла
+# print(f_dir, f_name, sep=' | ')
+# print('dirname ok', f_dir == os.path.dirname(curr_file))
+# print('basename ok', f_name == os.path.basename(curr_file))
+# print('abspath ok', curr_file == os.path.abspath(curr_file))
+# curr_file_rel = os.path.relpath(curr_file, root)
+# print(curr_file_rel)
+# print('relpath ok', curr_file == os.path.join(root, curr_file_rel))
+
+# Пример 7. Модуль os: создание, переименование и удаление папок
 import os
 
-root = r'C:\Python3.8\Lib\site-packages\django'
-folder = r'C:\Python3.8\Lib\site-packages\django\contrib\admin'
-django_admin_dirs = [
-os.path.relpath(item, root)
-for item in os.scandir(folder)
-if item.is_dir() and not item.name.startswith('_')
-]
-print(django_admin_dirs)
+# dir_name = 'sample_dir'
+# if not os.path.exists(dir_name):
+#     os.mkdir(dir_name)
+
+# dir_path = os.path.join('data', 'src')
+# if not os.path.exists(dir_path):
+#     os.mkdir(dir_path)   # Создаем одну папку
+
+# dir_path = os.path.join('data', 'src')
+# if not os.path.exists(dir_path):
+#     os.makedirs(dir_path)   # Создаем несколько папок
+
+# dir_name = 'first_dir'
+# new_dir_name = '../first_out_dir'
+# if os.path.exists(dir_name) and not os.path.exists(new_dir_name):
+#     os.rename(dir_name, new_dir_name)   # Переименовываем существующую папку
+
+to_remove_dir_name = 'second_dir'
+if os.path.exists(to_remove_dir_name):   # Проверка на наличие папки
+    os.rmdir(to_remove_dir_name)        # Удаление папки
+
+# Пример 7. Работа с файловой системой: модуль shutil
+
+# import os
+# import shutil
+#
+# to_remove_dir_name = 'second_dir'
+# if os.path.exists(to_remove_dir_name):
+#     shutil.rmtree(to_remove_dir_name)
+
+# Пример 8.
+
+# def copyfileobj(fsrc, fdst, length=16*1024):
+#     while 1:
+#         buf = fsrc.read(length)
+#         if not buf:
+#           break
+#         fdst.write(buf)
+
+import random
+import shutil
+
+
+for _ in range(3):
+    with open('data_hello.txt', encoding='utf-8') as src:
+        with open('data_summary.txt', 'a', encoding='utf-8') as dst:
+            head_size = random.randrange(21)
+            print(head_size, src.read(head_size))
+            shutil.copyfileobj(src, dst) 
+
+
+
 # Пример 10.
 """
 import os
