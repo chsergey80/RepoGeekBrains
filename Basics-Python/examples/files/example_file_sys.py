@@ -82,7 +82,7 @@
 # print('relpath ok', curr_file == os.path.join(root, curr_file_rel))
 
 # Пример 7. Модуль os: создание, переименование и удаление папок
-import os
+# import os
 
 # dir_name = 'sample_dir'
 # if not os.path.exists(dir_name):
@@ -101,11 +101,11 @@ import os
 # if os.path.exists(dir_name) and not os.path.exists(new_dir_name):
 #     os.rename(dir_name, new_dir_name)   # Переименовываем существующую папку
 
-to_remove_dir_name = 'second_dir'
-if os.path.exists(to_remove_dir_name):   # Проверка на наличие папки
-    os.rmdir(to_remove_dir_name)        # Удаление папки
+# to_remove_dir_name = 'second_dir'
+# if os.path.exists(to_remove_dir_name):   # Проверка на наличие папки
+#     os.rmdir(to_remove_dir_name)        # Удаление папки
 
-# Пример 7. Работа с файловой системой: модуль shutil
+# Пример 8. Работа с файловой системой: модуль shutil
 
 # import os
 # import shutil
@@ -114,41 +114,67 @@ if os.path.exists(to_remove_dir_name):   # Проверка на наличие 
 # if os.path.exists(to_remove_dir_name):
 #     shutil.rmtree(to_remove_dir_name)
 
-# Пример 8.
+# Пример 9. Реализация функции copyfileobj()
 
-# def copyfileobj(fsrc, fdst, length=16*1024):
-#     while 1:
-#         buf = fsrc.read(length)
-#         if not buf:
-#           break
-#         fdst.write(buf)
-
-import random
-import shutil
-
-
-for _ in range(3):
-    with open('data_hello.txt', encoding='utf-8') as src:
-        with open('data_summary.txt', 'a', encoding='utf-8') as dst:
-            head_size = random.randrange(21)
-            print(head_size, src.read(head_size))
-            shutil.copyfileobj(src, dst) 
-
+# import random
+# import shutil
+#
+#
+# for _ in range(3):
+#     with open('hello.txt', encoding='utf-8') as src:
+#         with open('summary.txt', 'a', encoding='utf-8') as dst:
+#             head_size = random.randrange(21)
+#             print(head_size, src.read(head_size), src)
+#             shutil.copyfileobj(src, dst)
+#     print(shutil.copyfile())
 
 
 # Пример 10.
-"""
-import os
+# import os
+# from shutil import copyfile, copy, copy2
+#
+#
+# def show_stat(f_path):
+#     stat = os.stat(f_path)
+#     print('{f_p}:\n\tperm - {perm}, modify {m_t:.0f}, access {a_t:.0f}'.format(
+#         f_p=f_path,
+#         perm=oct(stat.st_mode),
+#         m_t=stat.st_mtime,
+#         a_t=stat.st_atime,
+#     ))
+# src = 'summary.txt'
+# show_stat(src)
+# show_stat(copyfile(src, 'new_data/summary_clone.txt'))
+# show_stat(copy(src, 'new_data'))
+# show_stat(copy2(src, 'new_data/summary_clone_2.txt'))
 
-files = os.listdir()
-print(files)
-for file in files:
-    print(os.path.isdir(file))
-    print(os.path.isfile(file))
-    print(os.stat(file).st_size)
-"""
+
+# Пример 11.
+
+import os
+from collections import defaultdict
+from os.path import relpath
+import django
+root_dir = django.__path__[0]
+django_files = defaultdict(list)
+for root, dirs, files in os.walk(root_dir):
+    for file in files:
+        ext = file.rsplit('.', maxsplit=1)[-1].lower()
+        rel_path = relpath(os.path.join(root, file), root_dir)
+        django_files[ext].append(rel_path)
+for ext, files in sorted(django_files.items(), key=lambda x: len(x[1]), reverse=True):
+    print(f'{ext}: {len(files)}')
+print('\nPY FILES')
+print(*sorted(django_files['py'])[:10], sep='\n')
+
+
+# Пример 12.
+
+
+
+
 # Пример 2.
-import shutil
+#import shutil
 
 """
 import os
