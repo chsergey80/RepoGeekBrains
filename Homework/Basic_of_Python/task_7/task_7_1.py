@@ -12,8 +12,6 @@
 
 import os
 
-folder_struct = {"my_project": [{"settings": [{"bar": [], "foo": []}], "mainapp": [], "adminapp": [], "authapp": []}]}
-
 
 def project_starter(pth, struct):
     for fold_node, ch_node in struct.items():
@@ -26,5 +24,6 @@ def project_starter(pth, struct):
 
 
 if __name__ == "__main__":
+    folder_struct = {
+        "my_project": [{"settings": [{"bar": [], "foo": []}], "mainapp": [], "adminapp": [], "authapp": []}]}
     project_starter(os.getcwd(), struct=folder_struct)
-

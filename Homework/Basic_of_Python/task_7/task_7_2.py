@@ -28,7 +28,7 @@
 import os
 
 
-with open('config.yaml','r') as f:
+with open('config.yaml','r', encoding='utf-8') as f:
     my_list = f.readlines()
     for i in my_list:
         my_a_rf = i.rfind('-')+1
@@ -44,7 +44,7 @@ with open('config.yaml','r') as f:
             j=os.path.join(my_path_project_name, my_project_folder)
             if not os.path.exists(j):
                 if os.path.splitext(j)[1] != '':
-                    open(j, 'a').close()
+                    open(j, 'a', encoding='utf-8').close()
                 else:
                     os.mkdir(j)
         elif i.count(' ') == 5:
@@ -53,7 +53,7 @@ with open('config.yaml','r') as f:
             j_f = os.path.join(j, my_project_folder_f)
             if not os.path.exists(j_f):
                 if os.path.splitext(j_f)[1] != '':
-                    open(j_f, 'a').close()
+                    open(j_f, 'a', encoding='utf-8').close()
                 else:
                     os.mkdir(j_f)
         elif i.count(' ') == 8:
@@ -62,7 +62,7 @@ with open('config.yaml','r') as f:
             j_f_f=os.path.join(j_f, my_project_folder_f_f)
             if not os.path.exists(j_f_f):
                 if os.path.splitext(j_f_f)[1] != '':
-                    open(j_f_f, 'a').close()
+                    open(j_f_f, 'a', encoding='utf-8').close()
                 else:
                     os.mkdir(j_f_f)
         elif i.count(' ') == 11:
@@ -71,6 +71,6 @@ with open('config.yaml','r') as f:
             j_f_f_f = os.path.join(j_f_f, my_project_folder_f_f_f)
             if not os.path.exists(j_f_f_f):
                 if os.path.splitext(j_f_f_f)[1] != '':
-                    open(j_f_f_f, 'a').close()
+                    open(j_f_f_f, 'a', encoding='utf-8').close()
                 else:
                     os.mkdir(j_f_f_f)

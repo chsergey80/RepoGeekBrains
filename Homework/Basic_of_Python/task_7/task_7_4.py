@@ -14,8 +14,6 @@
 import os
 
 
-size = {}
-
 def scan_mem(pth):
     if not os.path.exists(pth):
         return
@@ -29,6 +27,7 @@ def scan_mem(pth):
 
 
 if __name__ == "__main__":
+    size = {}
     pth = os.getcwd()
     scan_mem(pth)
     print(size)
