@@ -149,13 +149,13 @@
 # show_stat(copy2(src, 'new_data/summary_clone_2.txt'))
 
 
-# Пример 11.
+# Пример 11. Тема: рекурсивный обход папок
 
 import os
 from collections import defaultdict
 from os.path import relpath
 import django
-root_dir = django.__path__[0]
+root_dir = django.__path__[0]   # путь к папке расположения Django
 django_files = defaultdict(list)
 for root, dirs, files in os.walk(root_dir):
     for file in files:
