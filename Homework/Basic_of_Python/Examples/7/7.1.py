@@ -1,6 +1,6 @@
 def get_sales(f_name):
     with open(f_name, 'r', encoding='utf-8') as f:
-        return f.read().splitlines()  # считаем, что файл небольшой и поместится в оперативную память
+        return f.read().splitlines()       # считаем, что файл небольшой и поместится в оперативную память
 
 
 def parse_sales(sales):

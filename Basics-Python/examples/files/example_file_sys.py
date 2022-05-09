@@ -151,29 +151,24 @@
 
 # Пример 11. Тема: рекурсивный обход папок
 
-import os
-from collections import defaultdict
-from os.path import relpath
-import django
-root_dir = django.__path__[0]   # путь к папке расположения Django
-django_files = defaultdict(list)
-for root, dirs, files in os.walk(root_dir):
-    for file in files:
-        ext = file.rsplit('.', maxsplit=1)[-1].lower()
-        rel_path = relpath(os.path.join(root, file), root_dir)
-        django_files[ext].append(rel_path)
-for ext, files in sorted(django_files.items(), key=lambda x: len(x[1]), reverse=True):
-    print(f'{ext}: {len(files)}')
-print('\nPY FILES')
-print(*sorted(django_files['py'])[:10], sep='\n')
+# import os
+# from collections import defaultdict
+# from os.path import relpath
+# import django
+# root_dir = django.__path__[0]   # путь к папке расположения Django
+# django_files = defaultdict(list)
+# for root, dirs, files in os.walk(root_dir):
+#     for file in files:
+#         ext = file.rsplit('.', maxsplit=1)[-1].lower()
+#         rel_path = relpath(os.path.join(root, file), root_dir)
+#         django_files[ext].append(rel_path)
+# for ext, files in sorted(django_files.items(), key=lambda x: len(x[1]), reverse=True):
+#     print(f'{ext}: {len(files)}')
+# print('\nPY FILES')
+# print(*sorted(django_files['py'])[:10], sep='\n')
 
 
-# Пример 12.
-
-
-
-
-# Пример 2.
+# Пример 11.1.
 #import shutil
 
 """
@@ -186,7 +181,7 @@ for item in os.scandir(root_dir):
     print(item.is_file())
     print(item.stat().st_size)
 """
-# Пример 3.
+# Пример 11.2.
 """
 import os
 
@@ -205,13 +200,13 @@ for root, dirs, files in os.walk(root_dir):
         print(os.path.split(f_path))  # Разбивает путь (папки) и название файла - способ первый
         print(os.path.dirname(f_path), os.path.basename(f_path))  # Разбивает путь (папки) и название файла - способ первый
 """
-# Пример 4.
+# Пример 11.3.
 """
 print(__file__)  # так можно вывести путь к вайлу программы, которую мы запускаем
 ROOT = os.path.dirname(__file__)
 print(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 """
-# Пример 5.
+# Пример 11.4.
 """
 
 iеmport  os
@@ -229,3 +224,201 @@ else:
     shutil.rmtree(dir_path)   # Удаляем только пустые папки
 
 """
+
+
+# Пример 12.   Исключение
+
+# f_path = 'new_one.txt'
+# try:
+#     with open(f_path, 'r', encoding='utf-8') as f:
+#         content = f.read()
+#     print(content)
+# except (FileNotFoundError, EOFError) as e:
+#     print(f'concrete error: {e}')
+# except Exception as e:
+#     print(f'global error: {e}')
+
+
+# Пример 13.   Исключение
+
+# f_path = 'new_one.txt'
+# try:
+#     with open(f_path, 'r', encoding='utf-8') as f:
+#         content = f.read()
+#     print(content)
+# except Exception as e:          # Глобальное исключение перехватило ошибку раньше всех, следовательно, другие обработчики уже не сработают
+#     print(f'global error: {e}')
+# except (FileNotFoundError, EOFError) as e:
+#     print(f'concrete error: {e}')
+
+
+# Пример 14.   Исключение с else
+
+# f_path = __file__   # Переменная __file__ хранит имя файла, поэтому код всегда будет выполняться без ошибок и выводить сам себя на экран
+# try:
+#     with open(f_path, 'r', encoding='utf-8') as f:
+#         content = f.read()
+# except Exception as e:
+#     print(f'global error: {e}')
+# else:
+#     print(content)
+
+
+# Пример 15.  Исключение с else
+#
+# f_path = 'calc_log.txt'
+# f = open(f_path, 'a', encoding='utf-8')
+# try:
+#     x = float(input('enter x val: '))
+#     y = float(input('enter y val: '))
+# except ValueError as e:
+#     print(f'wrong val: {e}')
+# else:
+#     result = x / y
+#     f.write(f'{x} / {y} = {result}\n')
+#     f.close()
+
+
+# Пример 16.    Исключение с else с исполнением через функцию
+
+# def do_calc(f_path):
+#     f = open(f_path, 'a', encoding='utf-8')
+#     try:
+#         x = float(input('enter x val: '))
+#         y = float(input('enter y val: '))
+#     except ValueError as e:
+#         print(f'wrong val: {e}')
+#     else:
+#         result = x / y
+#         f.write(f'{x} / {y} = {result}\n')
+#         print('closing file')
+#         f.close()
+#
+# if __name__ == '__main__':
+#     f_path = 'calc_log.txt'
+#     try:
+#         do_calc(f_path)
+#     except ZeroDivisionError:
+#         print('fault: Zero division')
+#     except Exception as e:
+#         print(f'global error: {e}')
+
+
+# Пример 17.Блок finally
+
+# def do_calc(f_path):
+#     f = open(f_path, 'a', encoding='utf-8')
+#     try:
+#         x = float(input('enter x val: '))
+#         y = float(input('enter y val: '))
+#     except ValueError as e:
+#         print(f'wrong val: {e}')
+#     else:
+#         result = x / y
+#         f.write(f'{x} / {y} = {result}\n')
+#     finally:                                # Перед выходом из функции обязательно выполнится код блока
+#         print('closing file')
+#         f.close()
+#
+#
+# if __name__ == '__main__':
+#     f_path = 'calc_log.txt'
+#     try:
+#         do_calc(f_path)
+#     except ZeroDivisionError:
+#         print('fault: Zero division')
+#     except Exception as e:
+#         print(f'global error: {e}')
+
+
+# # Пример 18. Ключевое слово raise
+#
+# def do_calc(f_path):
+#     f = open(f_path, 'a', encoding='utf-8')
+#     try:
+#         x = float(input('enter x val: '))
+#         y = float(input('enter y val: '))
+#     except ValueError as e:
+#         print(f'wrong val: {e}')
+#         raise ValueError
+#     else:
+#         result = x / y
+#         f.write(f'{x} / {y} = {result}\n')
+#     finally:
+#         f.close()
+
+#
+# if __name__ == '__main__':
+#     f_path = 'calc_log.txt'
+#     try:
+#         do_calc(f_path)
+#     except ZeroDivisionError:
+#         print('fault: Zero division')
+#         exit(1)
+#     except Exception as e:
+#         print(f'global error: {e}')
+#         exit(2)
+
+
+# # Пример 19. Ключевое слово raise
+#
+# class CalcError(Exception):
+#     pass
+# def do_calc(f_path):
+#     f = open(f_path, 'a', encoding='utf-8')
+#     try:
+#         x = float(input('enter x val: '))
+#         y = float(input('enter y val: '))
+#         result = x / y
+#     except ValueError as e:
+#         print(f'wrong val: {e}')
+#         raise CalcError
+#     except ZeroDivisionError:
+#         print('fault: Zero division')
+#         raise CalcError
+#     else:
+#         f.write(f'{x} / {y} = {result}\n')
+#     finally:
+#         f.close()
+#
+#
+# if __name__ == '__main__':
+#     f_path = 'calc_log.txt'
+#     try:
+#         do_calc(f_path)
+#     except CalcError:
+#         print(f'calc fail')
+#         exit(1)
+#     except Exception as e:
+#         print(f'global error: {e}')
+#         exit(2)
+
+
+# # Пример 20.
+#
+# import random
+#
+# class JobDone(Exception):
+#     pass
+# def nums_get(length, *args):
+#     nums = []
+#     try:
+#         for series in args:
+#             while series:
+#                 random.shuffle(series)
+#                 num = series.pop()
+#                 if num % 2:
+#                     nums.append(num)
+#                 if len(nums) == length:
+#                     raise JobDone
+#     except JobDone:
+#         return nums
+#
+#
+# nums_1 = [3, 6, 8, 9, 17]
+# nums_2 = [16, 22, 25]
+# nums_3 = [7, 11, 18]
+# print(nums_get(5, nums_1, nums_2, nums_3))
+
+
+# Пример 20.
