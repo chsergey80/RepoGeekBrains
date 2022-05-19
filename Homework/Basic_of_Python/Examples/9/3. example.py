@@ -21,7 +21,7 @@ class Material:
         return "Material"
 
 
-class Triangle(Shape, Material):
+class Triangle(Material, Shape):
     pass
 
 
